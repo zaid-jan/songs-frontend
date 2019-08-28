@@ -1,13 +1,11 @@
-const initialState = {
-    songs : [],
-}
+const initialState = {}
 
 export default (state = initialState, action) => {
     switch(action.type){
         case 'GET_SONGS':
             return {
                 ...state,
-                songs: action.payload,
+                data: action.payload,
             }
         default: return state;
     }

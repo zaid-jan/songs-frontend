@@ -11,7 +11,7 @@ export class Search extends Component {
     }
     handleClick = (e) => {
         e.preventDefault();
-        getSimilarSongs(this.state.qString);
+        this.props.getSimilarSongs(this.state.qString);
     }
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
@@ -30,11 +30,11 @@ export class Search extends Component {
                         </div>
                         {/*end of col*/}
                         <div className="col">
-                        <input className="form-control form-control-lg form-control-borderless" onChange={this.handleChange} type="search" placeholder="Search That Good Shit" />
+                        <input className="form-control form-control-lg form-control-borderless" onChange={this.handleChange} name="qString" type="search" placeholder="Search That Good Shit" />
                         </div>
                         {/*end of col*/}
                         <div className="col-auto">
-                        <button className="btn btn-lg btn-success" onCLick={this.handleClick} type="submit">Search</button>
+                        <button className="btn btn-lg btn-success" onClick={this.handleClick}>Search</button>
                         </div>
                         {/*end of col*/}
                     </div>
@@ -48,4 +48,9 @@ export class Search extends Component {
     }
 }
 
-export default connect(null , { getSimilarSongs })(Search)
+const mapStateToProps = state => ({
+    posts: "state.posts.items",
+})
+
+
+export default connect(mapStateToProps , { getSimilarSongs })(Search)
